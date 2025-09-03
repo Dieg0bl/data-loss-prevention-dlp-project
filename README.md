@@ -15,12 +15,35 @@
 <!-- endhide -->
 
 
-## 🌱 How to Start This Project
-This exercise focuses on the creation and implementation of security policies for **Data Loss Prevention (DLP)** within an organization, applying the principle of least privilege and ensuring that only authorized personnel have access to sensitive data.
+## 📖 Project Purpose
 
-### 🔑 General Objective:
-- **Part 1**: Define and establish DLP policies that help protect confidential information.
-- **Part 2**: Implement specific measures, such as **restricting the use of USB devices**, to ensure that DLP policies are applied in practice.
+This educational cybersecurity project focuses on the creation and implementation of **Data Loss Prevention (DLP)** security policies within an organization. Students will learn to apply the principle of least privilege and ensure that only authorized personnel have access to sensitive data through practical, hands-on exercises.
+
+### 🎯 Learning Objectives:
+- **Part 1**: Define and establish comprehensive DLP policies that help protect confidential information
+- **Part 2**: Implement specific technical measures, such as **restricting USB device access**, to ensure DLP policies are effectively applied in practice
+
+## 🛠️ Technologies Used
+
+This project utilizes the following technologies and tools:
+
+- **Operating System**: Windows (Virtual Machine recommended)
+- **Virtualization**: VirtualBox with Extension Pack
+- **Policy Management**: Windows Group Policy Editor (`gpedit.msc`)
+- **Security Framework**: Data Loss Prevention (DLP) principles
+- **Documentation**: PDF reports and policy documentation
+- **Testing Environment**: Windows user account management
+- **Storage Devices**: USB devices for restriction testing
+
+## 🚀 Prerequisites and Installation
+
+### System Requirements:
+- Windows virtual machine (Windows 10/11 recommended)
+- VirtualBox with Extension Pack installed
+- Administrative privileges on the VM
+- USB device for testing restrictions
+
+### 🌱 How to Start This Project
 
 ## 📝 Instructions
 
@@ -52,39 +75,56 @@ The second part of this exercise involves implementing policies to restrict the 
 
 > 💡 The following practice will focus on a Windows virtual machine.
 
-### Configuring a machine for USB device access
+### 📋 Setup Instructions
 
-> ⚠ To carry out this practice and apply restrictions on USB device access, we must ensure that the VM we are working on can access the USB devices connected to your physical machine (host). Follow these steps:
+#### Step 1: Virtual Machine Configuration
+Before implementing DLP policies, ensure your virtual environment is properly configured:
 
-1. **Install VirtualBox Extension Pack**. Go to the official VirtualBox website and download the Extension Pack that matches the installed version.
-2. Open VirtualBox, go to File > Tools > Extensions and select the downloaded file to install it.
-3. **Enable USB Support on the VM**. Shut down the virtual machine if it is running, select the VM in VirtualBox, click `Settings > Ports > USB`, and enable the `USB 2.0 (EHCI) Controller` or `USB 3.0 (xHCI) Controller`, depending on the port you are using.
-4. **Connect the USB device to the VM.** Start the VM and connect the USB device to your physical machine. In the VM menu, select `Devices > USB` and choose the connected device. The VM will take control of the USB.
+> ⚠️ **Important**: To apply USB device restrictions, your VM must be able to access USB devices connected to your physical machine (host).
 
-Once this is done successfully, let's get started!
+1. **Install VirtualBox Extension Pack**
+   - Visit the [official VirtualBox website](https://www.virtualbox.org/wiki/Downloads)
+   - Download the Extension Pack matching your VirtualBox version
+   - Open VirtualBox → File → Tools → Extensions → Install the downloaded file
 
-### USB Device Restriction in Windows
+2. **Enable USB Support on VM**
+   - Shutdown your virtual machine if running
+   - Select the VM in VirtualBox → Settings → Ports → USB
+   - Enable either `USB 2.0 (EHCI) Controller` or `USB 3.0 (xHCI) Controller`
 
-1. **Open the Group Policy Editor.** Press `Win + R`, type `gpedit.msc`, and press Enter to open the Group Policy Editor.
+3. **Connect USB Device to VM**
+   - Start the VM and connect USB device to your physical machine
+   - In VM menu: Devices → USB → Select your connected device
+   - VM will take control of the USB device
 
-2. **Navigate to Removable Storage Policies.** Go to Computer `Configuration > Administrative Templates > System > Removable Storage Access`.
+#### Step 2: Access Group Policy Editor
+- Press `Win + R`, type `gpedit.msc`, and press Enter
+- This opens the Group Policy Editor for policy configuration
 
-3. **Configure the Policy to Deny Access to USB Devices.** Enable the following policies:
+### 🔒 USB Device Restriction in Windows
 
-- Removable Disks: Deny read access.
-- Removable Disks: Deny write access.
+#### Step 3: Configure USB Restriction Policies
 
-> This will prevent users from reading or writing to connected USB devices.
+1. **Navigate to Removable Storage Policies**
+   - Go to: `Computer Configuration > Administrative Templates > System > Removable Storage Access`
 
-4. Restart the virtual machine to apply the changes.
+2. **Configure USB Access Denial Policies**
+   Enable the following policies to restrict USB access:
+   - **Removable Disks: Deny read access** - Prevents users from reading USB devices
+   - **Removable Disks: Deny write access** - Prevents users from writing to USB devices
+
+   > ⚠️ **Result**: This will prevent users from reading or writing to connected USB devices.
+
+3. **Apply Changes**
+   - Restart the virtual machine to apply the policy changes
 
 
-### Validation and Testing of USB Restriction
+### 🧪 Validation and Testing of USB Restriction
 
 1. **Test the USB Restriction.** Connect a USB device to the VM and try to access it from a standard user account (without administrative privileges).
 2. **Verify Access Restriction.** If the policies are correctly configured, standard users should not be able to access the USB device, and a message should appear indicating the denial of access.
 
-### Creation and Testing of a Regular User
+### 👤 Creation and Testing of a Regular User
 
 1. **Create a new regular user in Windows.** Open Settings (Win + I), go to `Accounts > Family & other users`.
 
@@ -94,7 +134,7 @@ Once this is done successfully, let's get started!
 
 4. **Test the restriction with the regular user.** Log in with the new regular user and connect the USB device to verify that access is denied due to the applied restrictions.
 
-### Enabling Exceptions for Specific Users
+### 🔧 Enabling Exceptions for Specific Users
 
 We assume that by this point you are a confident student, so we ask you to research how to enable exceptions for specific users. The idea is that you log in with an administrator account, open the `Group Policy Editor`, and investigate how to enable exceptions in the USB device policies for certain users or groups of users.
 

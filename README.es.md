@@ -14,12 +14,35 @@
 
 <!-- endhide -->
 
-## 🌱 ¿Cómo empezar este proyecto?
-Este ejercicio se enfoca en la creación e implementación de políticas de seguridad para la **Prevención de Pérdida de Datos (DLP)** dentro de una organización, aplicando el principio del menor privilegio y asegurando que solo el personal autorizado tenga acceso a datos sensibles.
+## 📖 Propósito del Proyecto
 
-### 🔑 Objetivo General:
-- **Parte 1**: Definir y establecer políticas de DLP que ayuden a proteger la información confidencial.
-- **Parte 2**: Implementar medidas específicas, como la **restricción del uso de dispositivos USB**, para asegurar que las políticas de DLP se apliquen en la práctica.
+Este proyecto educativo de ciberseguridad se enfoca en la creación e implementación de políticas de seguridad para la **Prevención de Pérdida de Datos (DLP)** dentro de una organización. Los estudiantes aprenderán a aplicar el principio del menor privilegio y asegurar que solo el personal autorizado tenga acceso a datos sensibles a través de ejercicios prácticos.
+
+### 🎯 Objetivos de Aprendizaje:
+- **Parte 1**: Definir y establecer políticas de DLP integrales que ayuden a proteger la información confidencial
+- **Parte 2**: Implementar medidas técnicas específicas, como la **restricción del acceso a dispositivos USB**, para asegurar que las políticas de DLP se apliquen efectivamente en la práctica
+
+## 🛠️ Tecnologías Utilizadas
+
+Este proyecto utiliza las siguientes tecnologías y herramientas:
+
+- **Sistema Operativo**: Windows (se recomienda Máquina Virtual)
+- **Virtualización**: VirtualBox con Extension Pack
+- **Gestión de Políticas**: Editor de Políticas de Grupo de Windows (`gpedit.msc`)
+- **Marco de Seguridad**: Principios de Prevención de Pérdida de Datos (DLP)
+- **Documentación**: Informes PDF y documentación de políticas
+- **Entorno de Pruebas**: Gestión de cuentas de usuario de Windows
+- **Dispositivos de Almacenamiento**: Dispositivos USB para pruebas de restricción
+
+## 🚀 Requisitos Previos e Instalación
+
+### Requisitos del Sistema:
+- Máquina virtual Windows (Windows 10/11 recomendado)
+- VirtualBox con Extension Pack instalado
+- Privilegios administrativos en la VM
+- Dispositivo USB para probar las restricciones
+
+### 🌱 ¿Cómo empezar este proyecto?
 
 ## 📝 Instrucciones
 
@@ -48,50 +71,90 @@ La segunda parte de este ejercicio consiste en la implementación de políticas 
 > 💡 La siguiente practica estará enfocada en una maquina virtual windows.
 
 
-### Configuración de una maquina para el acceso a dispositivos USB
+### 📋 Instrucciones de Configuración
 
-> ⚠ Para llevar a cabo esta practica y aplicar restricciones de acceso a dispositivos USB, deberemos asegurarnos que la VM que estemos trabajando pueda acceder a los dispositivos USB conectados a tu máquina física (host). Sigue estos pasos:
+#### Paso 1: Configuración de la Máquina Virtual
+Antes de implementar las políticas de DLP, asegúrate de que tu entorno virtual esté configurado correctamente:
 
-1. **Instalar VirtualBox Extension Pack**. Ve al [sitio oficial de VirtualBox](https://www.virtualbox.org/wiki/Downloads) y descarga el Extension Pack que coincida con la versión instalada.
-2. Abre VirtualBox, ve a **Archivo >herramientas > Extensiones** y selecciona el archivo descargado para instalarlo.
-3. **Habilitar Soporte de USB en la VM**. Apaga la máquina virtual si está corriendo y selecciona la VM en VirtualBox, haz clic en **Configuración > Puertos > USB** y activa el **Controlador USB 2.0 (EHCI)** o **Controlador USB 3.0 (xHCI)**, según el puerto que uses.
-4. **Conecta el dispositivo USB a la VM**. Inicia la VM y conecta el dispositivo USB a tu máquina física. En el menú de la VM, selecciona **Dispositivos > USB** y elige el dispositivo que conectaste. La VM tomará control del USB.
+> ⚠️ **Importante**: Para aplicar restricciones de dispositivos USB, tu VM debe poder acceder a los dispositivos USB conectados a tu máquina física (host).
 
-¡Una vez hecho con exito esto, comencemos!
+1. **Instalar VirtualBox Extension Pack**
+   - Visita el [sitio oficial de VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+   - Descarga el Extension Pack que coincida con tu versión de VirtualBox
+   - Abre VirtualBox → Archivo → Herramientas → Extensiones → Instala el archivo descargado
 
-### Restricción de Dispositivos USB en Windows
+2. **Habilitar Soporte de USB en la VM**
+   - Apaga tu máquina virtual si está funcionando
+   - Selecciona la VM en VirtualBox → Configuración → Puertos → USB
+   - Activa el `Controlador USB 2.0 (EHCI)` o `Controlador USB 3.0 (xHCI)`
 
-1. **Abrir el Editor de Políticas de Grupo (Group Policy Editor)**. Presiona `Win + R`, escribe `gpedit.msc` y presiona `Enter` para abrir el Editor de Políticas de Grupo.
+3. **Conectar Dispositivo USB a la VM**
+   - Inicia la VM y conecta el dispositivo USB a tu máquina física
+   - En el menú de la VM: Dispositivos → USB → Selecciona tu dispositivo conectado
+   - La VM tomará control del dispositivo USB
 
-2. **Navegar a las Políticas de Dispositivos Removibles**. Ve a `Configuración del equipo > Plantillas administrativas > Sistema > Acceso de almacenamiento removible`.
+#### Paso 2: Acceder al Editor de Políticas de Grupo
+- Presiona `Win + R`, escribe `gpedit.msc`, y presiona Enter
+- Esto abre el Editor de Políticas de Grupo para configuración de políticas
 
-3. **Configurar la Política de Prohibición de Acceso a Dispositivos USB**. Activa las siguientes políticas:
-     - **Discos extraíbles: denegar acceso de lectura**.
-     - **Discos extraíbles: denegar acceso de escritura**.
+### 🔒 Restricción de Dispositivos USB en Windows
 
-> Esto evitará que los usuarios puedan leer o escribir en dispositivos USB conectados.
+#### Paso 3: Configurar Políticas de Restricción USB
 
-4. Reinicia la máquina virtual para aplicar los cambios.
+1. **Navegar a las Políticas de Dispositivos Removibles**
+   - Ve a: `Configuración del equipo > Plantillas administrativas > Sistema > Acceso de almacenamiento removible`
 
-### Validación y prueba de la restricción de USB
+2. **Configurar Políticas de Denegación de Acceso USB**
+   Activa las siguientes políticas para restringir el acceso USB:
+   - **Discos extraíbles: denegar acceso de lectura** - Impide que los usuarios lean dispositivos USB
+   - **Discos extraíbles: denegar acceso de escritura** - Impide que los usuarios escriban en dispositivos USB
 
-1. **Prueba la restricción de USB**. Conecta un dispositivo USB a la VM e intenta acceder al dispositivo desde una cuenta de usuario estándar (sin privilegios administrativos).
+   > ⚠️ **Resultado**: Esto evitará que los usuarios puedan leer o escribir en dispositivos USB conectados.
 
-2. **Verificar la Restricción de Acceso**. Si las políticas están correctamente configuradas, los usuarios estándar no podrán acceder al dispositivo USB, y debería aparecer un mensaje indicando la denegación.
+3. **Aplicar Cambios**
+   - Reinicia la máquina virtual para aplicar los cambios de política
 
-### Creación y prueba de un usuario regular
+### 🧪 Validación y Prueba de la Restricción de USB
 
-1. **Crear un nuevo usuario regular en Windows**. Abre **Configuración (Win + I)**, ve a **Cuentas > Familia y otros usuarios**.
-2. Haz clic en **Agregar a otra persona a este equipo** y selecciona **No tengo la información de inicio de sesión** y luego **Agregar un usuario sin cuenta de Microsoft**.
-3. Crea el usuario con nombre y contraseña (será un usuario estándar, sin privilegios).
+#### Paso 4: Probar las Restricciones USB
 
-4. **Prueba la restricción con el usuario regular**. Inicia sesión con el nuevo usuario regular y conecta el dispositivo USB para verificar que no tenga acceso debido a las restricciones aplicadas.
+1. **Prueba la Restricción de USB**
+   - Conecta un dispositivo USB a la VM
+   - Intenta acceder al dispositivo desde una cuenta de usuario estándar (sin privilegios administrativos)
 
-### Habilitación de excepciones para usuarios específicos.
+2. **Verificar la Restricción de Acceso**
+   - Si las políticas están correctamente configuradas, los usuarios estándar no podrán acceder al dispositivo USB
+   - Debería aparecer un mensaje indicando la denegación de acceso
 
-Asumimos que ha este punto eres un alumno confiando en ti mismo por lo que te pedimos que investigues como habilitar excepciones para usuarios específicos. La idea seria que inicies sesión con una cuenta con privilegios de administrador y que abras el **editor de políticas de grupo** e investigues cómo habilitar excepciones en las políticas de dispositivos USB para ciertos usuarios o grupos de usuarios.
+### 👤 Creación y Prueba de un Usuario Regular
 
-Por ultimo deberias deberias verificar que las excepciones han sido aplicadas, realizando pruebas con diferentes usuarios.
+#### Paso 5: Crear Usuario Estándar para Pruebas
+
+1. **Crear Nuevo Usuario Regular en Windows**
+   - Abre **Configuración** (`Win + I`)
+   - Navega a: **Cuentas > Familia y otros usuarios**
+
+2. **Agregar Cuenta de Usuario**
+   - Haz clic en **Agregar a otra persona a este equipo**
+   - Selecciona **No tengo la información de inicio de sesión**
+   - Luego selecciona **Agregar un usuario sin cuenta de Microsoft**
+   - Crea el usuario con nombre y contraseña (será un usuario estándar, sin privilegios)
+
+3. **Probar Restricción con Usuario Regular**
+   - Inicia sesión con la nueva cuenta de usuario regular
+   - Conecta el dispositivo USB para verificar que el acceso sea denegado debido a las restricciones aplicadas
+
+### 🔧 Habilitación de Excepciones para Usuarios Específicos
+
+#### Configuración Avanzada (Ejercicio de Investigación)
+
+Asumimos que a este punto eres un alumno confiado en ti mismo, por lo que te pedimos que investigues cómo habilitar excepciones para usuarios específicos. La idea es que:
+
+1. Inicies sesión con una cuenta con privilegios de administrador
+2. Abras el **Editor de Políticas de Grupo**
+3. Investigues cómo habilitar excepciones en las políticas de dispositivos USB para ciertos usuarios o grupos de usuarios
+
+Por último, deberías verificar que las excepciones han sido aplicadas, realizando pruebas con diferentes usuarios.
 
 
 
