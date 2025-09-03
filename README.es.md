@@ -1,10 +1,13 @@
 <!-- hide -->
 #  Políticas de Seguridad DLP
 
+> **📚 REPOSITORIO ARCHIVADO**: Este repositorio está archivado y es de solo lectura. [Haz un fork](../../fork) para trabajar con los ejercicios.
+
 > By [@rosinni](https://github.com/rosinni) and [other contributors](https://github.com/breatheco-de/data-loss-prevention-dlp-project/graphs/contributors) at [4Geeks Academy](https://4geeksacademy.co/)
 
 [![build by developers](https://img.shields.io/badge/build_by-Developers-blue)](https://4geeks.com)
 [![build by developers](https://img.shields.io/twitter/follow/4geeksacademy?style=social&logo=twitter)](https://twitter.com/4geeksacademy)
+[![Repository Status](https://img.shields.io/badge/status-archived-red)](https://github.com/Dieg0bl/data-loss-prevention-dlp-project)
 
 *Estas instrucciones estan [disponibles en español](https://github.com/breatheco-de/data-loss-prevention-dlp-project/blob/main/README.es.md)*
 

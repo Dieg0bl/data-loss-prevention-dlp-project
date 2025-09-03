@@ -1,0 +1,60 @@
+name: Repository Configuration Check
+
+# This workflow validates repository configuration compliance
+# Note: This workflow will not run in an archived repository, but serves as documentation
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Weekly check on Mondays at 9 AM UTC
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  check-configuration:
+    runs-on: ubuntu-latest
+    if: ${{ !github.event.repository.archived }}  # Only run if not archived
+    
+    steps:
+      - name: Check Repository Settings
+        run: |
+          echo "Checking repository configuration compliance..."
+          echo "Repository: ${{ github.repository }}"
+          echo "Archived: ${{ github.event.repository.archived }}"
+          echo "Private: ${{ github.event.repository.private }}"
+          echo "Wiki enabled: ${{ github.event.repository.has_wiki }}"
+          echo "Pages enabled: ${{ github.event.repository.has_pages }}"
+          
+      - name: Validate Configuration
+        run: |
+          # Expected configuration:
+          # - Public repository (not private)
+          # - Archived status
+          # - Wiki disabled
+          # - Pages disabled
+          
+          if [ "${{ github.event.repository.private }}" == "true" ]; then
+            echo "❌ Repository should be public"
+            exit 1
+          fi
+          
+          if [ "${{ github.event.repository.has_wiki }}" == "true" ]; then
+            echo "❌ Wiki should be disabled"
+            exit 1
+          fi
+          
+          if [ "${{ github.event.repository.has_pages }}" == "true" ]; then
+            echo "❌ Pages should be disabled"
+            exit 1
+          fi
+          
+          echo "✅ Repository configuration is compliant"
+
+  archive-notice:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.repository.archived }}
+    
+    steps:
+      - name: Archive Status
+        run: |
+          echo "🔒 This repository is archived and read-only"
+          echo "📚 Educational content remains available for reference"
+          echo "🔀 Fork this repository to work with the exercises"

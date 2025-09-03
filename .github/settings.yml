@@ -1,0 +1,42 @@
+# Repository Settings Configuration
+# This file documents the required repository configuration
+
+repository:
+  # Repository visibility and archival settings
+  private: false  # Public repository
+  archived: true  # Repository should be archived
+  
+  # Disable features as requested
+  has_wiki: false      # Disable Wiki
+  has_pages: false     # Disable GitHub Pages
+  has_projects: false  # Disable Projects
+  has_issues: true     # Keep Issues enabled for educational purposes
+  
+  # General settings
+  allow_merge_commit: false
+  allow_squash_merge: true
+  allow_rebase_merge: false
+  delete_branch_on_merge: true
+  
+  # Branch protection for main branch
+  default_branch: main
+
+# Branch protection rules
+branches:
+  - name: main
+    protection:
+      # Protect main branch as requested
+      required_status_checks:
+        strict: true
+        contexts: []
+      enforce_admins: true
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+        dismiss_stale_reviews: true
+        require_code_owner_reviews: false
+        restrict_pushes: true
+      restrictions:
+        users: []
+        teams: []
+      allow_force_pushes: false
+      allow_deletions: false
